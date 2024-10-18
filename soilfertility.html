@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroNurture - Fertilizer Recommender</title>
+    <link rel="stylesheet" href="styles1.css">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <!-- Leaflet Draw CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"/>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <!-- Leaflet Draw JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+</head>
+<body>
+    <header>
+        <h1>AgroNurture: Fertilizer Recommender and Crop Yield Monitoring</h1>
+        <a href="index.html" id="back">Home</a>
+    </header>
+
+    <div class="container">
+        <div id="map"></div>
+        <div class="info-panel">
+            <h2>Welcome, Farmer!</h2>
+            <p>Drag and select your farm area on the map to analyze soil and weather data.</p>
+            <p>Farm size will be automatically calculated.</p>
+            <div class="info">
+                <div id="farm-size"></div>
+                <div id="temp"></div>
+                <div id="hum"></div>
+                <div id="cloud"></div>
+                <div id="rain"></div>
+                <table>
+                    <tr>
+                        <td>Soil Type:</td>
+                        <td><input type="text" name="soil-type" id="soil-type"></td>
+                    </tr>
+                    <tr>
+                        <td>Soil ph:</td>
+                        <td><input type="number" name="ph-value" id="ph-value"></td>
+                    </tr>
+                    <tr>
+                        <td>Soil Nitrogen:</td>
+                        <td><input type="number" name="nitrogen" id="nitrogen"></td>
+                    </tr>
+                    <tr>
+                        <td>Soil Potassium:</td>
+                        <td><input type="number" name="potassium" id="potassium"></td>
+                    </tr>
+                    <tr>
+                        <td>Soil Phosphorus:</td>
+                        <td><input type="number" name="phosphorus" id="phosphorus"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><button id="analyze-btn">Analyze Soil and Weather</button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 AgroNurture. All Rights Reserved.</p>
+    </footer>
+    <script src="app.js"></script>
+
+</body>
+</html>

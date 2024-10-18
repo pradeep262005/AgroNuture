@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroNurture - Community Chat</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f1f1f1;
+            margin: 0;
+            padding: 0;
+        }
+        header,footer {
+            background-color: #2d882d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        header a{
+    text-decoration: none;
+    color: white;
+}
+header a:hover{
+    font-size: 24px;
+    color:black;
+    background-color: white;
+    border-radius: 10px;
+}
+        .chat-container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .chat-box {
+            max-height: 500px;
+            overflow-y: auto;
+            padding: 10px;
+            background-color: #fafafa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .message {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        .profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #ccc;
+            margin-right: 10px;
+        }
+        .message-content {
+            background-color: #e0f7e0;
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 75%;
+        }
+        .message .name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .message .timestamp {
+            font-size: 0.8em;
+            color: gray;
+        }
+        .chat-input {
+            display: flex;
+            margin-top: 20px;
+        }
+        .chat-input input {
+            width: 85%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        .chat-input button {
+            width: 15%;
+            background-color: #2d882d;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin-left: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        footer{
+            margin-top: 15%;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>AgroNurture - Farming Community Chat</h1>
+    <a href="index.html" id="back">Home</a>
+</header>
+
+<div class="chat-container">
+    <div class="chat-box" id="chat-box">
+        <!-- Example chat messages -->
+        <div class="message">
+            <div class="profile-pic" style="background-image: url('https://via.placeholder.com/40');"></div>
+            <div class="message-content">
+                <div class="name">Ramesh Farmer</div>
+                <div class="text">Has anyone tried the new organic fertilizers for wheat crops?</div>
+                <div class="timestamp">10:15 AM</div>
+            </div>
+        </div>
+        <div class="message">
+            <div class="profile-pic" style="background-image: url('https://via.placeholder.com/40');"></div>
+            <div class="message-content">
+                <div class="name">Sita AgroExpert</div>
+                <div class="text">Yes, I tried it last season! It improved my crop yield by 20%.</div>
+                <div class="timestamp">10:20 AM</div>
+            </div>
+        </div>
+        <div class="message">
+            <div class="profile-pic" style="background-image: url('https://via.placeholder.com/40');"></div>
+            <div class="message-content">
+                <div class="name">Krishna Farmer</div>
+                <div class="text">Which brand of fertilizer did you use?</div>
+                <div class="timestamp">10:25 AM</div>
+            </div>
+        </div>
+        <div class="message">
+            <div class="profile-pic" style="background-image: url('https://via.placeholder.com/40');"></div>
+            <div class="message-content">
+                <div class="name">Sita AgroExpert</div>
+                <div class="text">It was "GreenHarvest". The composition worked well with my soil.</div>
+                <div class="timestamp">10:28 AM</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat input area -->
+    <div class="chat-input">
+        <input type="text" id="message-input" placeholder="Type your message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<script>
+    function sendMessage() {
+        var chatBox = document.getElementById('chat-box');
+        var messageInput = document.getElementById('message-input');
+        var messageText = messageInput.value.trim();
+
+        if (messageText) {
+            // Create new message element
+            var newMessage = document.createElement('div');
+            newMessage.classList.add('message');
+
+            newMessage.innerHTML = `
+                <div class="profile-pic" style="background-image: url('https://via.placeholder.com/40');"></div>
+                <div class="message-content">
+                    <div class="name">You</div>
+                    <div class="text">${messageText}</div>
+                    <div class="timestamp">${new Date().toLocaleTimeString()}</div>
+                </div>
+            `;
+
+            // Append new message to chat box
+            chatBox.appendChild(newMessage);
+            
+            // Clear input field
+            messageInput.value = '';
+
+            // Scroll to the bottom
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    }
+</script>
+
+<footer>
+    <p>AgroNurture &copy; 2024</p>
+</footer>
+
+</body>
+</html>

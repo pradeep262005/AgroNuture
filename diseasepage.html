@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroNurture - Disease Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header, footer {
+            background-color: #2d882d;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #2d882d;
+        }
+        header a{
+    text-decoration: none;
+    color: white;
+}
+header a:hover{
+    font-size: 24px;
+    color:black;
+    background-color: white;
+    border-radius: 10px;
+}
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="file"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #2d882d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        .output {
+            margin-top: 20px;
+        }
+        footer{
+            margin-top: 15%;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>AgroNurture - Disease Prediction</h1>
+    <a href="index.html" id="back">Home</a>
+</header>
+
+<div class="container">
+    <h2>Predict Plant Disease</h2>
+
+    <div class="form-group">
+        <label for="input-type">Choose Input Method</label>
+        <select id="input-type" onchange="toggleInput()">
+            <option value="image">Image Scan</option>
+            <option value="manual">Manual Input</option>
+        </select>
+    </div>
+
+    <!-- Image Input Section -->
+    <div id="image-input-section">
+        <div class="form-group">
+            <label for="plant-image">Upload Plant Image (For Disease Detection)</label>
+            <input type="file" id="plant-image" accept="image/*">
+        </div>
+    </div>
+
+    <!-- Manual Input Section -->
+    <div id="manual-input-section" style="display: none;">
+        <div class="form-group">
+            <label for="symptoms">Enter Observed Symptoms</label>
+            <textarea id="symptoms" rows="4" placeholder="Describe visible symptoms..."></textarea>
+        </div>
+        <div class="form-group">
+            <label for="plant-type">Plant Type</label>
+            <input type="text" id="plant-type" placeholder="Enter plant type...">
+        </div>
+        <div class="form-group">
+            <label for="growth-condition">Growth Condition</label>
+            <input type="text" id="growth-condition" placeholder="Enter current growth condition...">
+        </div>
+    </div>
+
+    <button onclick="predictDisease()">Predict Disease</button>
+
+    <!-- Output Section -->
+    <div class="output" id="prediction-result"></div>
+
+</div>
+
+<footer>
+    <p>AgroNurture &copy; 2024</p>
+</footer>
+
+<script>
+    function toggleInput() {
+        var inputType = document.getElementById('input-type').value;
+        var imageInputSection = document.getElementById('image-input-section');
+        var manualInputSection = document.getElementById('manual-input-section');
+
+        if (inputType === 'image') {
+            imageInputSection.style.display = 'block';
+            manualInputSection.style.display = 'none';
+        } else {
+            imageInputSection.style.display = 'none';
+            manualInputSection.style.display = 'block';
+        }
+    }
+
+    function predictDisease() {
+        var inputType = document.getElementById('input-type').value;
+        var resultDiv = document.getElementById('prediction-result');
+        resultDiv.innerHTML = "Predicting...";
+
+        if (inputType === 'image') {
+            var imageInput = document.getElementById('plant-image');
+            if (imageInput.files.length > 0) {
+                var imageFile = imageInput.files[0];
+                // TODO: Upload image to the backend for processing (ML model)
+                // Send to backend API for image processing (disease detection)
+                resultDiv.innerHTML = "Image uploaded. Analyzing for disease...";
+            } else {
+                resultDiv.innerHTML = "Please upload an image!";
+            }
+        } else if (inputType === 'manual') {
+            var symptoms = document.getElementById('symptoms').value;
+            var plantType = document.getElementById('plant-type').value;
+            var growthCondition = document.getElementById('growth-condition').value;
+
+            // Send manual input data to backend for processing
+            resultDiv.innerHTML = `Predicting disease for plant: ${plantType} based on symptoms: ${symptoms}...`;
+
+            // TODO: Call your backend API to process the manual data
+        }
+    }
+</script>
+
+</body>
+</html>
